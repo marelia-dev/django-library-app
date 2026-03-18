@@ -10,7 +10,11 @@ class Author(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 class Genre(models.Model):
-    name = models.CharField()
+    name = models.CharField(verbose_name="Pavadinimas")
+
+    class Meta:
+        verbose_name = "Zanras"
+        verbose_name_plural = "Zanrai"
 
     def __str__(self):
         return self.name
