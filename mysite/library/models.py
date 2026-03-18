@@ -26,6 +26,18 @@ class Book(models.Model):
     author = models.ForeignKey(to="Author", on_delete=models.SET_NULL, null=True, blank=True)
     genre = models.ManyToManyField(to="Genre")
 
+    # def display_genre(self):
+    #     genres = self.genre.all()
+    #     result = ""
+    #     for genre in genres:
+    #         result += genre.name + ", "
+    #     return genres
+
+    def display_genre(self):
+        return ", ".join(genre.name for genre in self.genre.all())
+
+    display_genre.short_description = "Zanrai"
+
     def __str__(self):
         return self.title
 
