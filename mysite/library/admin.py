@@ -25,6 +25,11 @@ class BookInstanceAdmin(admin.ModelAdmin):
     ]
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('name', 'email')
+    readonly_fields = ['display_books']
+
+    fieldsets = [
+        ('General', {'fields': ('first_name', 'last_name', 'book')})
+        ]
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ['last_name', 'first_name', 'display_books']
