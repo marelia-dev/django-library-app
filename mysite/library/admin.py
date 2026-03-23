@@ -28,7 +28,7 @@ class AuthorAdmin(admin.ModelAdmin):
     readonly_fields = ['display_books']
 
     fieldsets = [
-        ('General', {'fields': ('first_name', 'last_name', 'book')})
+        ('General', {'fields': ('first_name', 'last_name', 'description', 'display_books')}),
         ]
 
 class AuthorAdmin(admin.ModelAdmin):

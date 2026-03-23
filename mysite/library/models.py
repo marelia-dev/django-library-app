@@ -5,6 +5,7 @@ from django.db import models
 class Author(models.Model):
     first_name = models.CharField()
     last_name = models.CharField()
+    description = models.TextField(default="")
 
     def display_books(self):
         return ', '.join(book.title for book in self.books.all())
@@ -35,13 +36,7 @@ class Book(models.Model):
     )
     genre = models.ManyToManyField(to="Genre")
 
-    # def display_genre(self):
-    #     genres = self.genre.all()
-    #     result = ""
-    #     for genre in genres:
-    #         result += genre.name + ", "
-    #     return genres
-
+ 
     def display_genre(self):
         return ", ".join(genre.name for genre in self.genre.all())
 
