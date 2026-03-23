@@ -3,14 +3,11 @@
 {% block title %}Autorius{% endblock %}
 
 {% block content %}
-<p>Vardas: {{ author.first_name }}</p>
-<p>Vardas: {{ author.last_name }}</p>
 <h1>{{ author.first_name }} {{ author.last_name }}</h1>
 <p>{{ author.description }}</p>
-
 <hr>
 <h2>Autoriaus knygos:</h2>
 {% for book in author.books.all %}
-<p>{{ book.title }}</p>
+<p><a href="{% url 'book' book.pk %}">{{ book.title }}</a></p>
 {% endfor %}
 {% endblock %}
