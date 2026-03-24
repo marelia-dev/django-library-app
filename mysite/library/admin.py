@@ -9,7 +9,7 @@ class BookInstanceInLine(admin.TabularInline):
     fields = ['uuid', 'due_back', 'status']
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'isbn', 'display_genre']
+    list_display = ['title', 'author', 'isbn', 'display_genre', 'cover']
     inlines = [BookInstanceInLine]
 
 

@@ -4,8 +4,23 @@
 
 {% block content %}
 
+<div class="row"></div>
+
 {% for book in books %}
-<p><a href="{{ book.pk }}">{{ book.title }}</a></p>
+<div class="col-md-4 d-flex align-items-stretch">
+    <div class="card mb-4 shadows-sm" style="width:300px">
+        {% if book.cover %}
+        <img class="card-img-top" src="{{ book.cover.url }}" alt="...">
+        {% else %}
+        {% load static %}
+        <img class="card-img-top" src="{% static 'img/no_image.png' %}" alt="...">
+        {% endif %}
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
+            <p class="card-text"><a href="{{ book.pk }}">{{ book.title }}</a></p>
+        </div>
+    </div>
+</div>
 {% endfor %}
 
 {% if is_paginated %}
