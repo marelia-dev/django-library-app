@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Paieskos rezultatai{% endblock %}
+
+{% block content %}
+
+<h3>Knygos, rastos pagal uzklausa "{{ query }}":</h3>
+{% for book in book_search_results %}
+<p><a href="{% url 'book' book.pk %}">{{ book }}</a></p>
+{% empty %}
+<p>Nerasta</p>
+
+{% endfor %}
+
+<h3>Autoriai, rasti pagal uzklausa "{{ query }}":</h3>
+{% for author in author_search_results %}
+<p><a href="{% url 'author' author.pk %}">{{ author }}</a></p>
+{% empty %}
+<p>Nerasta</p>
+
+{% endfor %}
+
+{% endblock %}
