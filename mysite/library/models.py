@@ -1,13 +1,15 @@
 from django.contrib.auth.models import User
 from django.db import models
 import uuid
-import datetime as timezone
+from django.utils import timezone
+from tinymce.models import HTMLField
+
 
 
 class Author(models.Model):
     first_name = models.CharField()
     last_name = models.CharField()
-    description = models.TextField(default="")
+    description = HTMLField(verbose_name="Description", max_length=3000, default="")
 
     def display_books(self):
         return ", ".join(book.title for book in self.books.all())
@@ -72,7 +74,7 @@ class BookInstance(models.Model):
     reader = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def is_overdue(self):
-        if self.due_back < timezone.now().date()
+        return self.due_back and self.due_back < timezone.now().date()
 
 
     def __str__(self):
