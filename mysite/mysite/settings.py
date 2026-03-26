@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-vp7h9x@30i)$r=^uw55(4f2tvcz=en=69denv1z02#9#=gccl^'
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
