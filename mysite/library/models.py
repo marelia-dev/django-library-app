@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 import uuid
+import datetime as timezone
 
 
 class Author(models.Model):
@@ -69,6 +70,9 @@ class BookInstance(models.Model):
     status = models.CharField(choices=LOAN_STATUS, default="d")
     due_back = models.DateField(null=True, blank=True)
     reader = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def is_overdue(self):
+        if self.due_back < timezone.now().date()
 
 
     def __str__(self):
