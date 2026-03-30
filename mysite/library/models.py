@@ -79,3 +79,15 @@ class BookInstance(models.Model):
 
     def __str__(self):
         return str(self.uuid)
+
+
+class BookReview(models.Model):
+    book = models.ForeignKey(to="Book", on_delete=models.SET_NULL,
+                             related_name="reviews", null=True, blank=True)
+    reviewer = models.ForeignKey(to=User, on_delete=models.SET_NULL,
+                                 null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+
+    class Meta:
+        ordering = ['-date_created']

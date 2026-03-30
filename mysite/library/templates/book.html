@@ -15,6 +15,18 @@
 <p><b>Žanrai:</b> {{ book.display_genre }}</p>
 <p>{{ book.summary }}</p>
 <hr>
+{% if user.is_authenticated %}
+<form method="post">
+    {% csrf_token %}
+    {% load crispy_forms_tags %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-primary">Paskelbti</button>
+</form>
+{% endif %}
+{% for review in book.reviews.all %}
+<p><b>{{ review.reviewer }}</b>, <i>{{ review.date_created}}</i></p>
+<p>{{ review.content }}</p>
+{% endfor %}
 <h2>Šios knygos kopijos:</h2>
 {% for instance in book.instances.all %}
 <hr>
