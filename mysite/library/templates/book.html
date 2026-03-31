@@ -24,7 +24,13 @@
 </form>
 {% endif %}
 {% for review in book.reviews.all %}
-<p><b>{{ review.reviewer }}</b>, <i>{{ review.date_created}}</i></p>
+<p>
+    {% if review.reviewer.profile.photo %}
+    <img src="{{ review.reviewer.profile.photo.url }}" class="rounded-circle" style="width: 30px">
+    {% endif %}
+    <b>{{ review.reviewer }}</b>,
+    <i>{{ review.date_created }}</i>
+</p>
 <p>{{ review.content }}</p>
 {% endfor %}
 <h2>Šios knygos kopijos:</h2>

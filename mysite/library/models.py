@@ -1,5 +1,5 @@
 from tkinter import Image
-from PIL import Image as PilImage
+from PIL import Image
 from django.contrib.auth.models import User
 from django.db import models
 import uuid
@@ -16,24 +16,16 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-
         if self.photo:
-            img = PilImage.open(self.photo.path)
-            width, height = img.size
-            if width > height:
-                left = (width - height) // 2
-                top = 0
-                right = left + height
-                bottom = height
-            else:
-                left = 0
-                top = (height - width) // 2
-                right = width
-                bottom = top + width
+            img = Image.open(self.photo.path)
+            min_side = min(img.width, img.height)
+            left = (img.width - min_side) // 2
+            top = (img.height - min_side) // 2
+            right = left + min_side
+            bottom = top + min_side
             img = img.crop((left, top, right, bottom))
-            output_size = (300, 300)
-            img = img.resize(output_size, PilImage.Resampling.LANCZOS)
-            img.save(self.photo.path, quality=95, optimize=True)
+            img = img.resize((300, 300), Image.LANCZOS)
+            img.save(self.photo.path)
 
 class Author(models.Model):
     first_name = models.CharField()
