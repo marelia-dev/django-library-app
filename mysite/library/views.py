@@ -1,13 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, reverse
 from django.urls import reverse_lazy
-from django.views.generic.edit import FormView, FormMixin
+from django.views.generic.edit import FormView, FormMixin, UpdateView
 from .models import Book, BookInstance, Author
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
-from .forms import BookReviewForm
+from .forms import BookReviewForm, UserUpdateForm
+from django.contrib.auth.models import User
 
 def index(request):
     num_visits = request.session.get('num_visits', 1)
@@ -102,3 +103,12 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     template_name = "signup.html"
     success_url = reverse_lazy('login')
+
+class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
+    form_class = UserUpdateForm
+    template_name = "profile.html"
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset=...):
+        return self.request.user
+
