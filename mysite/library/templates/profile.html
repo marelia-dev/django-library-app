@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Vartotojo profilis{% endblock %}
 
 {% block content %}
 {% if user.profile.photo %}
-<img src="{{ user.profile.photo.url }}" class="rounded-circle">
+<img src="{{ user.profile.photo.url }}"
+     class="rounded-circle img-fluid"
+     style="width: 150px; height: 150px; object-fit: cover;"
+     alt="Profile photo">
+{% else %}
+<img src="{% static 'default_avatar.jpg' %}"
+     class="rounded-circle img-fluid"
+     style="width: 150px; height: 150px; object-fit: cover;"
+     alt="Default avatar">
 {% endif %}
 <h1>Vartotojo "{{ user.username }}" profilis</h1>
 <form method="post" enctype="multipart/form-data">

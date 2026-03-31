@@ -1,3 +1,5 @@
+from tkinter import Image
+from PIL import Image as PilImage
 from django.contrib.auth.models import User
 from django.db import models
 import uuid
@@ -5,6 +7,33 @@ from django.utils import timezone
 from tinymce.models import HTMLField
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to="profile_pics", null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.user.username} profilis"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.photo:
+            img = PilImage.open(self.photo.path)
+            width, height = img.size
+            if width > height:
+                left = (width - height) // 2
+                top = 0
+                right = left + height
+                bottom = height
+            else:
+                left = 0
+                top = (height - width) // 2
+                right = width
+                bottom = top + width
+            img = img.crop((left, top, right, bottom))
+            output_size = (300, 300)
+            img = img.resize(output_size, PilImage.Resampling.LANCZOS)
+            img.save(self.photo.path, quality=95, optimize=True)
 
 class Author(models.Model):
     first_name = models.CharField()

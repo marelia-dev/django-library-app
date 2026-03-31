@@ -1,5 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, FormMixin, UpdateView
 from .models import Book, BookInstance, Author
@@ -7,7 +8,7 @@ from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
-from .forms import BookReviewForm, UserUpdateForm
+from .forms import BookReviewForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.models import User
 
 def index(request):
@@ -104,11 +105,25 @@ class SignUpView(generic.CreateView):
     template_name = "signup.html"
     success_url = reverse_lazy('login')
 
-class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
-    form_class = UserUpdateForm
-    template_name = "profile.html"
-    success_url = reverse_lazy('profile')
+# class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
+#     form_class = UserUpdateForm
+#     template_name = "profile.html"
+#     success_url = reverse_lazy('profile')
+#
+#     def get_object(self, queryset=...):
+#         return self.request.user
 
-    def get_object(self, queryset=...):
-        return self.request.user
+@login_required
+def profile(request):
+    u_form = UserUpdateForm(request.POST or None, instance=request.user)
+    p_form = ProfileUpdateForm(request.POST or None, request.FILES, instance=request.user.profile)
+    if u_form.is_valid() and p_form.is_valid():
+        u_form.save()
+        p_form.save()
+        return redirect('profile')
+    context = {
+        'u_form': u_form,
+        'p_form': p_form,
+    }
+    return render(request, template_name="profile.html", context=context)
 
