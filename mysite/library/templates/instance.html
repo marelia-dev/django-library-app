@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Administravimas{% endblock %}
+
+{% block content %}
+<h1>{{ instance.book.title }}</h1>
+<p>UUID: {{ instance.uuid }}</p>
+{% if instance.due_back %}
+<p>Bus prieinama: {{ instance.due_back }}</p>
+<p>Skaitytojas: {{ instance.reader }}</p>
+{% endif %}
+<p>Būsena: {{ instance.get_status_display }}</p>
+
+{% endblock %}
