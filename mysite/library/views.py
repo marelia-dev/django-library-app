@@ -152,3 +152,15 @@ class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.Cr
 
     def test_func(self):
         return self.request.user.is_staff
+
+class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = BookInstance
+    template_name = "instance_form.html"
+    form_class = BookInstanceCreateUpdateForm
+    # success_url = reverse_lazy('instances')
+
+    def get_success_url(self):
+        return reverse("instance", kwargs={"pk": self.object.pk})
+
+    def test_func(self):
+        return self.request.user.is_staff

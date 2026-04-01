@@ -10,5 +10,8 @@
 <p>Skaitytojas: {{ instance.reader }}</p>
 {% endif %}
 <p>Būsena: {{ instance.get_status_display }}</p>
+<div>
+    <a href="{% url 'instance_update' instance.pk %}" class="btn btn-warning">Redaguoti</a>
+</div>
 
 {% endblock %}
