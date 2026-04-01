@@ -34,9 +34,9 @@ EMAIL_HOST_USER = 'mano_pastas@gmail.com'
 EMAIL_HOST_PASSWORD = 'VerySecret'
 # slaptažodis
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
