@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
+from django.conf.global_settings import LOGIN_URL
+from django.utils.translation import gettext_lazy as _
 
 from django.conf.global_settings import MEDIA_ROOT, LOGIN_URL
 
@@ -34,7 +36,7 @@ EMAIL_HOST_USER = 'mano_pastas@gmail.com'
 EMAIL_HOST_PASSWORD = 'VerySecret'
 # slaptažodis
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -57,9 +59,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -118,34 +120,44 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-# LANGUAGE_CODE = 'lt'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'lt'
 
+LANGUAGES = [
+    ('lt', 'Lietuvių'),
+    ('en', 'English'),
+]
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = "Europe/Vilnius"
 
 USE_I18N = True
+USE_L10N = True
 
-# USE_TZ = True
-USE_TZ = False
+USE_TZ = True
+# USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# ====================== STATIC FILES ======================
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'library/media')
-
+# ====================== MEDIA FILES ======================
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+# ====================== AUTH SETTINGS ======================
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# ====================== CRISPY FORMS ======================
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
+# ====================== TINYMCE ======================
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 1120,
@@ -172,4 +184,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'contextmenu': 'formats | link image',
     'menubar': True,
     'statusbar': True,
-    }
+}

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-02 13:45+0300\n"
-"PO-Revision-Date: 2026-04-02 13:46+0300\n"
+"PO-Revision-Date: 2026-04-02 14:00+0300\n"
 "Last-Translator: Marijanas <your@email.com>\n"
 "Language-Team: Lithuanian <your@email.com>\n"
 "Language: lt\n"
@@ -39,7 +39,7 @@ msgstr "Autoriaus knygos"
 msgid "Author"
 msgstr "Autorius"
 
-#: .\models.py:45 .\templates\base.html:30
+#: .\models.py:45
 msgid "Authors"
 msgstr "Autoriai"
 
@@ -75,7 +75,7 @@ msgstr "Viršelis"
 msgid "Book"
 msgstr "Knyga"
 
-#: .\models.py:92 .\templates\base.html:33
+#: .\models.py:92
 msgid "Books"
 msgstr "Knygos"
 
@@ -135,6 +135,7 @@ msgstr "Knygos atsiliepimas"
 msgid "Book reviews"
 msgstr "Knygų atsiliepimai"
 
+# Шаблоны
 #: .\templates\base.html:15 .\templates\base.html:89
 msgid "My library"
 msgstr "Mano biblioteka"
