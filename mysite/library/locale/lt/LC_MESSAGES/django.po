@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-02 11:59+0300\n"
-"PO-Revision-Date: 2026-04-02 12:06+0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2026-04-02 12:17+0300\n"
+"PO-Revision-Date: 2026-04-02 12:17+0300\n"
+"Last-Translator: Marijanas <your@email.com>\n"
+"Language-Team: Lithuanian <your@email.com>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,9 +19,53 @@ msgstr ""
 "n%10>=2 && n%10<=9 && (n%100<11 || n%100>19) ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: .\templates\index.html:4
+#: .\templates\base.html:15 .\templates\base.html:89
+msgid "My library"
+msgstr "Mano biblioteka"
+
+#: .\templates\base.html:16
+msgid "Django demo website!"
+msgstr "Django demonstracinė svetainė!"
+
+#: .\templates\base.html:27 .\templates\index.html:4
 msgid "HOME"
 msgstr "PRADŽIA"
+
+#: .\templates\base.html:30
+msgid "Authors"
+msgstr "Autoriai"
+
+#: .\templates\base.html:33
+msgid "Books"
+msgstr "Knygos"
+
+#: .\templates\base.html:36
+msgid "About"
+msgstr "Apie"
+
+#: .\templates\base.html:51
+msgid "My books"
+msgstr "Mano knygos"
+
+#: .\templates\base.html:55
+msgid "Administration"
+msgstr "Administravimas"
+
+#: .\templates\base.html:61
+msgid "Logout"
+msgstr "Atsijungti"
+
+#: .\templates\base.html:66
+msgid "Signup"
+msgstr "Registracija"
+
+#: .\templates\base.html:69
+msgid "Login"
+msgstr "Prisijungti"
+
+#: .\templates\base.html:74
+msgid "Search.."
+msgstr "Ieškoti.."
 
 #: .\templates\index.html:7
 msgid "Today we have:"
@@ -46,4 +89,4 @@ msgstr "Autorių:"
 
 #: .\templates\index.html:15
 msgid "Your visits:"
-msgstr "Apsilankymų skaičius:"
+msgstr "Jūsų apsilankymų:"
