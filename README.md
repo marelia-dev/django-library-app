@@ -35,4 +35,5 @@ python manage.py runserver
 ```
 
 ## Autorius
-**Marijanas Molis** — Python / Django Developer
+**Marijanas Molis** 
+Python / Django Developer
